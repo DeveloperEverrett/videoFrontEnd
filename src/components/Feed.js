@@ -7,15 +7,15 @@ import Sidebar from './Sidebar';
 
 const Feed = () => {
   const [selectedCategory, setSelectedCategory] = useState('New');
-  const [videos, setVideos] = useState(null);
+  const [videos, setVideos] = useState([]);
 
   useEffect(() => {
-    setVideos(null);
-
     fetchApi(`search?part=snippet&q=${selectedCategory}`).then((data) =>
       setVideos(data.items)
     );
   }, [selectedCategory]);
+
+  console.log(videos);
 
   return (
     <Stack sx={{ flexDirection: { sx: 'column', md: 'row' } }}>
@@ -36,7 +36,7 @@ const Feed = () => {
           variant="body2"
           sx={{ mt: 1.5, color: '#fff' }}
         >
-          Copyright © 2022 JSM Media
+          Copyright © 2022 Kevin E.
         </Typography>
       </Box>
 

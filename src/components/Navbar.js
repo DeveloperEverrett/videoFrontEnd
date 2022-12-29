@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stack } from '@mui/material';
+import { Stack, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 import SearchBar from './SearchBar';
@@ -19,8 +19,16 @@ const Navbar = () => {
         justifyContent: 'space-between',
       }}
     >
-      <Link to="/" style={{ display: 'flex', alignItems: 'center' }}>
-        <img src={logo} alt="logo" height={150} width={150} />
+      <Link
+        to="/"
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      >
+        <Button variant="outlined" color="error" fontSize="125px">
+          Video Dragon
+        </Button>
       </Link>
 
       <SearchBar />
