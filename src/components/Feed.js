@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Stack, Typography } from '@mui/material';
-import { fetchApi } from '../utils/fetchApi';
 
-import { Sidebar, Videos } from './';
+import { fetchApi } from '../utils/fetchApi';
+import Videos from './Videos';
+import Sidebar from './Sidebar';
 
 const Feed = () => {
   const [selectedCategory, setSelectedCategory] = useState('New');
-  const [videos, setVideos] = useState([]);
+  const [videos, setVideos] = useState(null);
 
   useEffect(() => {
+    setVideos(null);
+
     fetchApi(`search?part=snippet&q=${selectedCategory}`).then((data) =>
       setVideos(data.items)
     );
@@ -19,20 +22,21 @@ const Feed = () => {
       <Box
         sx={{
           height: { sx: 'auto', md: '92vh' },
-          borderRight: '1px solid #30475E',
+          borderRight: '1px solid #3d3d3d',
           px: { sx: 0, md: 2 },
         }}
       >
+        <Sidebar
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+        />
+
         <Typography
           className="copyright"
           variant="body2"
-          sx={{ mt: 1.5, color: '#30475E' }}
+          sx={{ mt: 1.5, color: '#fff' }}
         >
-          <Sidebar
-            selectedCategory={selectedCategory}
-            setSelectedCategory={setSelectedCategory}
-          />
-          &copy;Copyright 2023 Kevin E.
+          Copyright © 2022 JSM Media
         </Typography>
       </Box>
 
@@ -43,7 +47,7 @@ const Feed = () => {
           mb={2}
           sx={{ color: 'white' }}
         >
-          {selectedCategory} <span style={{ color: '#C1A57B' }}>videos</span>
+          {selectedCategory} <span style={{ color: '#FC1503' }}>videos</span>
         </Typography>
 
         <Videos videos={videos} />
