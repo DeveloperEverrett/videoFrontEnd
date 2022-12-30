@@ -5,23 +5,27 @@ import { CheckCircle } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 
 import { fetchApi } from '../utils/fetchApi';
-import ChannelCard from './ChannelCard';
-import Videos from './Videos';
+import { Videos, ChannelCard } from './';
 
 const ChannelDetail = () => {
-  const [channelDetail, setChannelDetail] = useState(null);
+  const [channelDetail, setChannelDetail] = useState([]);
   const [videos, setVideos] = useState([]);
   const { id } = useParams();
 
-  console.log(channelDetail);
-
   useEffect(() => {
-    fetchApi(`channels?part="snippet&id=${id}`).then((data) =>
-      setChannelDetail(data?.items[0])
-    );
-    fetchApi(`search?channelId=${id}&part=snippet&order=data`).then((data) =>
-      setVideos(data?.items)
-    );
+    const fetchResults = async () => {
+      const data = await fetchApi(`channels?part=snippet&id=${id}`);
+
+      setChannelDetail(data?.items[0]);
+
+      const videosData = await fetchApi(
+        `search?channelId=${id}&part=snippet%2Cid&order=date`
+      );
+
+      setVideos(videosData?.items);
+    };
+
+    fetchResults();
   }, [id]);
 
   return (
@@ -33,6 +37,7 @@ const ChannelDetail = () => {
             background:
               'linear-gradient(90deg, rgba(0,238,247,1) 0%, rgba(206,3,184,1) 100%, rgba(0,212,255,1) 100%)',
             zIndex: 10,
+            height: '300px',
           }}
         />
         <ChannelCard channelDetail={channelDetail} marginTop="-93px" />
