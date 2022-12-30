@@ -5,7 +5,7 @@ import { CheckCircle } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 
 import { fetchApi } from '../utils/fetchApi';
-import { Videos, ChannelCard } from './';
+import { Videos, ChannelCard } from '.';
 
 const ChannelDetail = () => {
   const [channelDetail, setChannelDetail] = useState([]);

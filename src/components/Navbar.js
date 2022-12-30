@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import SearchBar from './SearchBar';
 import logo from '../assets/logo.png';
+import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 
 const Navbar = () => {
   return (
@@ -24,11 +25,10 @@ const Navbar = () => {
         style={{
           display: 'flex',
           alignItems: 'center',
+          size: '35px',
         }}
       >
-        <Button variant="outlined" color="error" fontSize="125px">
-          Video Dragon
-        </Button>
+        <RocketLaunchIcon />
       </Link>
 
       <SearchBar />
