@@ -28,7 +28,7 @@ const Navbar = () => {
           size: '35px',
         }}
       >
-        <RocketLaunchIcon />
+        <img src={logo} width="50" />
       </Link>
 
       <SearchBar />
